@@ -1,7 +1,8 @@
-a = int(input("Input a number: "))
-n = int(input("Range for power: "))
+import math
 
-for i in range(0, n):
-    power = a**i
-    sum = power + power
-    print("The sum of %d powered numbers is %d" % (n, sum))
+n = int(input("Input a range: "))
+
+print("Here is the power series with range of", str(n))
+for i in range(1, n + 1):
+    power = math.pow(i, i)
+    print(power)
