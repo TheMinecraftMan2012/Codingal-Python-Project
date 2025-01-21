@@ -25,4 +25,15 @@ else:
 
 print("It's 10pm")
 print("All shops are closing.")
-ClOrOp = input("")
+ClOrOp = input("Will you close your shop?(Y/N): ")
+
+if ClOrOp == "Y" or ClOrOp == "y":
+    shutdown(True)
+
+elif ClOrOp == "N" or ClOrOp == "n":
+    shutdown(False)
+
+else:
+    print("Wrong Choice")
+    time.sleep(3)
+    sys.exit()
