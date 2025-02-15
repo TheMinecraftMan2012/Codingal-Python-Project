@@ -14,7 +14,7 @@ print("May I ask you for your name?")
 name = input("Your name: ")
 
 print(f"Hi, {name}!")
-print(f"I can generate password from your name.")
+print("I can generate password from your name.")
 print("Would you like to make a password by me?")
 
 yesorno = input("(Y/N): ")
