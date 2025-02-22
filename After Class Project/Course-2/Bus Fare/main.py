@@ -17,11 +17,13 @@ class Bus(Vehicle):
     def calculateFare(self):
         if self.isAC == True:
             bus_fare = (self.distance * 5) + 2000
-            print("Your Total Bus Fare:", bus_fare)
+            mCost = int((bus_fare * 10) / 100)
+            print("Your Total Bus Fare:", bus_fare + mCost)
         
         else:
             bus_fare = (self.distance * 5) + 500
-            print("Your Total Bus Fare:", bus_fare)
+            mCost = int((bus_fare * 10) / 100)
+            print("Your Total Bus Fare:", bus_fare + mCost)
 
 shohagh_pres = Bus("Shohagh Prestige", 300, 20, 360, True)
 shohagh_pres.info()
