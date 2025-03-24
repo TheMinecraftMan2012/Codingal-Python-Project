@@ -1,0 +1,72 @@
+import math, random, pygame
+
+SCREEN_WIDTH = 800
+SCREEN_HEIGHT = 500
+PLAYER_START_X = 370
+PLAYER_START_Y = 380
+ENEMY_START_Y_MIN = 50
+ENEMY_START_Y_MAX = 150
+ENEMY_SPEED_X = 4
+ENEMY_SPEED_Y = 40
+BULLET_SPEED = 10
+COLLISION_DISTANCE = 20
+
+pygame.init()
+
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+background = pygame.image.load(r"Class Works\Course-2\Pygame\Space Game\background.png")
+pygame.display.set_caption("Space Invaders")
+pygame.display.set_icon(pygame.image.load(r"Class Works\Course-2\Pygame\Space Game\ufo.png"))
+
+playerImg = pygame.image.load(r"Class Works\Course-2\Pygame\Space Game\player.png")
+playerX, playerY = PLAYER_START_X, PLAYER_START_Y
+playerX_change = 0
+
+enemyImg = []
+enemyX, enemyY = [], []
+enemyX_change, enemyY_change = [], []
+num_of_enemies = 6
+
+for _i in range(num_of_enemies):
+    enemyImg.append(pygame.image.load(r"Class Works\Course-2\Pygame\Space Game\enemy.png"))
+    enemyX.append(random.randint(0, SCREEN_WIDTH - 64))
+    enemyY.append(random.randint(ENEMY_START_Y_MIN, ENEMY_START_Y_MAX))
+    enemyX_change.append(ENEMY_SPEED_X)
+    enemyY_change.append(ENEMY_SPEED_Y)
+
+bulletImg = pygame.image.load(r"Class Works\Course-2\Pygame\Space Game\bullet.png")
+bulletX, bulletY = 0, PLAYER_START_Y
+bulletX_change, bulletY_change = 0, BULLET_SPEED
+bullet_state = "ready"
+
+score_value = 0
+font = pygame.font.Font(r"Class Works\Course-2\Pygame\Space Game\Poppins-Medium.ttf", 32)
+textX, textY = 10, 10
+
+over_font = pygame.font.Font(r"Class Works\Course-2\Pygame\Space Game\Poppins-Medium.ttf", 64)
+
+def show_score(x, y):
+    score = font.render("Score: " + str(score_value), True, (255, 255, 255))
+    screen.blit(score, (x, y))
+
+def game_over_text():
+    score = over_font.render("GAME OVER", True, (255, 255, 255))
+    screen.blit(score, (200, 250))
+
+def player(x, y):
+    screen.blit(playerImg, (x, y))
+
+def enemy(x, y, i):
+    screen.blit(enemyImg[i], (x, y))
+
+def isCollision(enemyX, enemyY, bulletX, bulletY):
+    distance = math.sqrt((enemyX - bulletX) ** 2 + (enemyY - bulletY) ** 2)
+    return distance < COLLISION_DISTANCE
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+    
+    pygame.display.update()

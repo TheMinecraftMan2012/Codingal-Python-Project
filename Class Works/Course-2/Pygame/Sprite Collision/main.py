@@ -7,7 +7,7 @@ FONT_SIZE = 72
 
 pygame.init()
 
-background_image = pygame.transform.scale(pygame.image.load(r"I:\Codingal Python\2\Codingal-Python-Project\Class Works\Course-2\Pygame\Sprite Collision\bg.png"), (SCREEN_WIDTH, SCREEN_HEIGHT))
+background_image = pygame.transform.scale(pygame.image.load(r"Class Works\Course-2\Pygame\Sprite Collision\bg.png"), (SCREEN_WIDTH, SCREEN_HEIGHT))
 font = pygame.font.SysFont("Times New Roman", FONT_SIZE)
 
 class Sprite(pygame.sprite.Sprite):
