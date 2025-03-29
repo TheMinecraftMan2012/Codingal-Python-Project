@@ -30,7 +30,6 @@ enemyY =  []
 enemyX_change = []
 enemyY_change = []
 num_of_enemies = 10
-
 for _i in range(num_of_enemies):
     enemyImg.append(pygame.image.load(r"Class Works\Course-2\Pygame\Space Game\enemy.png"))
     enemyX.append(random.randint(0, SCREEN_WIDTH - 64))
