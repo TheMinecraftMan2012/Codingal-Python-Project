@@ -24,6 +24,9 @@ playerImg = pygame.image.load(r"Class Works\Course-2\Pygame\Space Game\player.pn
 playerX, playerY = PLAYER_START_X, PLAYER_START_Y
 playerX_change = 0
 
+bullet_sfx = pygame.mixer.Sound(r"After Class Project\Course-2\Space Game (Levelled Up)\bullet.wav")
+gameover_sfx = pygame.mixer.Sound(r"After Class Project\Course-2\Space Game (Levelled Up)\gameover.wav")
+
 enemyImg = []
 enemyX = []
 enemyY =  []
@@ -53,8 +56,9 @@ def show_score(x, y):
     screen.blit(score, (x, y))
 
 def game_over_text():
-    score = over_font.render("GAME OVER", True, (255, 255, 255))
-    screen.blit(score, (200, 250))
+    go_txt = over_font.render("GAME OVER", True, (255, 255, 255))
+    gameover_sfx.play()
+    screen.blit(go_txt, (200, 250))
 
 def player(x, y):
     screen.blit(playerImg, (x, y))
@@ -85,6 +89,7 @@ while running:
                 playerX_change = 5
             if event.key == pygame.K_SPACE and bullet_state == "ready":
                 bulletX = playerX
+                bullet_sfx.play()
                 firebullet(bulletX, bulletY)
         if event.type == pygame.KEYUP and event.key in [pygame.K_LEFT, pygame.K_RIGHT]:
             playerX_change = 0
