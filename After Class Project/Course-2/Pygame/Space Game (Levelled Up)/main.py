@@ -24,8 +24,8 @@ playerImg = pygame.image.load(r"Class Works\Course-2\Pygame\Space Game\player.pn
 playerX, playerY = PLAYER_START_X, PLAYER_START_Y
 playerX_change = 0
 
-bullet_sfx = pygame.mixer.Sound(r"After Class Project\Course-2\Space Game (Levelled Up)\bullet.wav")
-gameover_sfx = pygame.mixer.Sound(r"After Class Project\Course-2\Space Game (Levelled Up)\gameover.wav")
+bullet_sfx = pygame.mixer.Sound(r"After Class Project\Course-2\Pygame\Space Game (Levelled Up)\bullet.wav")
+gameover_sfx = pygame.mixer.Sound(r"After Class Project\Course-2\Pygame\Space Game (Levelled Up)\gameover.wav")
 
 enemyImg = []
 enemyX = []
