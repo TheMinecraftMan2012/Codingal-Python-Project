@@ -1,25 +1,60 @@
-from tkinter import *
-from tkinter import messagebox
+import tkinter as tk
+from tkinter import StringVar
 
-def check():
-    password = password_entry.get()
-    if password == "":
-        messagebox.showinfo("Alert", "Please don't leave the entry blank")
+# Function to check strength
+def check_password_strength(password: str) -> str:
+    strength = 0
+
+    if len(password) >= 8:
+        strength += 1
+    if any(char.isupper() for char in password):
+        strength += 1
+    if any(char.isdigit() for char in password):
+        strength += 1
+    if any(not char.isalnum() for char in password):
+        strength += 1
+
+    if strength <= 1:
+        return "Weak"
+    elif strength == 2 or strength == 3:
+        return "Medium"
     else:
-        ch_1 = []
+        return "Strong"
 
-root = Tk()
-root.geometry("400x300")
+# Update function
+def update_strength(*args):
+    pwd = password_var.get()
+    result = check_password_strength(pwd)
+    strength_var.set(f"Strength: {result}")
+
+    # Change color
+    if result == "Weak":
+        strength_label.config(fg="red")
+    elif result == "Medium":
+        strength_label.config(fg="orange")
+    else:
+        strength_label.config(fg="green")
+
+# GUI Setup
+root = tk.Tk()
 root.title("Password Strength Checker")
+root.geometry("400x200")
 
-Label(root, text="Password Strength Checker", font=("Arial", 18, "bold")).pack(pady=10)
+password_var = StringVar()
+password_var.trace_add('write', update_strength)
 
-Label(root, text="Your Password", font=("Arial", 14)).pack(pady=7)
-password_entry = Entry(root, width=50)
-password_entry.pack(pady=8)
-Button(root, text="Check Password", relief=GROOVE, command=check).pack(pady=5)
+strength_var = StringVar()
+strength_var.set("Strength: ")
 
-result = Label(root, text="", font=("Arial", 13))
-result.pack(pady=12)
+# Widgets
+title = tk.Label(root, text="Enter Password:", font=("Arial", 14))
+title.pack(pady=10)
 
+entry = tk.Entry(root, textvariable=password_var, width=30, font=("Arial", 12))
+entry.pack(pady=5)
+
+strength_label = tk.Label(root, textvariable=strength_var, font=("Arial", 14))
+strength_label.pack(pady=10)
+
+# Start GUI
 root.mainloop()
